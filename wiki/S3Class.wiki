@@ -1,0 +1,74 @@
+#labels Phase-Implementation
+=class.s3.php=
+
+class.s3.php allows you to interact with Amazon's Simple Storage Service (S3). You can add/remove buckets and keys and query information about them as well. Curl is used to enable working with large files.
+
+==Usage==
+
+The following code creates a new S3 object and displays a list of available buckets.
+
+{{{
+$s3 = new S3("Your Amazon Key", "Your Secret Amazon Key");
+$buckets = $s3->getBuckets();
+foreach($buckets as $bucket)
+  echo $bucket . "<br/>";
+}}}
+
+==Members==
+
+*$_key*
+
+*$_secret*
+
+*$_server*
+
+*$_pathToCurl*
+
+*$_hasher*
+
+*$_date*
+
+*$_error*
+
+==Methods==
+
+*__construct()*
+
+*base64()*
+
+*bucketExists()*
+
+*createBucket()*
+
+*deleteBucket()*
+
+*deleteObject()*
+
+*directorySize()*
+
+*downloadObject()*
+
+*getBucketContents()*
+
+*getBuckets()*
+
+*getObject()*
+
+*getObjectHead()*
+
+*getObjectInfo()*
+
+*isOk()*
+
+*objectExists()*
+
+*putObject()*
+
+*sendRequest()*
+
+*signature()*
+
+
+
+
+
