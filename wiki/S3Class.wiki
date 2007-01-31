@@ -1,3 +1,4 @@
+#summary Programmer's reference for class.s3.php (Simple Storage Service) 
 #labels Phase-Implementation
 =class.s3.php=
 
@@ -16,56 +17,56 @@ foreach($buckets as $bucket)
 
 ==Members==
 
-*$_key*
+*`$_key`*
 
-*$_secret*
+*`$_secret`*
 
-*$_server*
+*`$_server`*
 
-*$_pathToCurl*
+*`$_pathToCurl`*
 
-*$_hasher*
+*`$_hasher`*
 
-*$_date*
+*`$_date`*
 
-*$_error*
+*`$_error`*
 
 ==Methods==
 
-*__construct()*
+*`__construct()`*
 
-*base64()*
+*`base64()`*
 
-*bucketExists()*
+*`bucketExists()`*
 
-*createBucket()*
+*`createBucket()`*
 
-*deleteBucket()*
+*`deleteBucket()`*
 
-*deleteObject()*
+*`deleteObject()`*
 
-*directorySize()*
+*`directorySize()`*
 
-*downloadObject()*
+*`downloadObject()`*
 
-*getBucketContents()*
+*`getBucketContents()`*
 
-*getBuckets()*
+*`getBuckets()`*
 
-*getObject()*
+*`getObject()`*
 
-*getObjectHead()*
+*`getObjectHead()`*
 
-*getObjectInfo()*
+*`getObjectInfo()`*
 
-*isOk()*
+*`isOk()`*
 
-*objectExists()*
+*`objectExists()`*
 
-*putObject()*
+*`putObject()`*
 
-*sendRequest()*
+*`sendRequest()`*
 
-*signature()*
+*`signature()`*
 
 
