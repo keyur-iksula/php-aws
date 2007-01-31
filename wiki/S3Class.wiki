@@ -1,4 +1,4 @@
-#summary Programmer's reference for class.s3.php (Simple Storage Service) 
+#summary Programmer's reference for class.s3.php (Simple Storage Service).
 #labels Phase-Implementation
 =class.s3.php=
 
