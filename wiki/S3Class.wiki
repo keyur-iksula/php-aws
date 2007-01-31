@@ -2,7 +2,7 @@
 #labels Phase-Implementation
 =class.s3.php=
 
-class.s3.php allows you to interact with Amazon's Simple Storage Service (S3). You can add/remove buckets and keys and query information about them as well. Curl is used to enable working with large files.
+class.s3.php allows you to interact with Amazon's Simple Storage Service (S3). You can add/remove buckets and keys and query information about them as well. [http://curl.haxx.se/ Curl] is used to enable working with large files.
 
 ==Usage==
 
@@ -17,56 +17,77 @@ foreach($buckets as $bucket)
 
 ==Members==
 
-*`$_key`*
+====$_key====
+Contains your Amazon key.
 
-*`$_secret`*
+====$_secret====
+Contains your Amazon secret key.
 
-*`$_server`*
+====$_server====
+Fully-qualified URL to Amazon's S3 server. Defaults to http://s3.amazonaws.com. Most likely, this won't ever need to be changed.
 
-*`$_pathToCurl`*
+====$_pathToCurl====
+In order to handle large files efficiently (without loading them into memory), we use [http://curl.haxx.se/ curl] directly at the system shell level. *`$_pathToCurl`* needs to point to curl's location on your system. In most cases, you can simply set this to "curl" as the command in typically available in your path. If that doesn't work, you can locate curl on your system by running `which curl` or `locate curl` at a command prompt.
 
-*`$_hasher`*
+Future versions will attempt to auto-detect curl's location if the one you specify is not valid (or executable).
 
-*`$_date`*
 
-*`$_error`*
+
+====$_hasher====
+
+====$_date====
+
+====$_error====
 
 ==Methods==
 
-*`__construct()`*
+====__construct()====
 
-*`base64()`*
+====base64()====
 
-*`bucketExists()`*
+====bucketExists()====
 
-*`createBucket()`*
+====createBucket()====
 
-*`deleteBucket()`*
+====deleteBucket()====
 
-*`deleteObject()`*
+====deleteObject()====
 
-*`directorySize()`*
+====directorySize()====
 
-*`downloadObject()`*
+====downloadObject()====
 
-*`getBucketContents()`*
+====getBucketContents()====
 
-*`getBuckets()`*
+====getBuckets()====
 
-*`getObject()`*
+====getObject()====
 
-*`getObjectHead()`*
+====getObjectHead()====
 
-*`getObjectInfo()`*
+====getObjectInfo()====
 
-*`isOk()`*
+====isOk()====
 
-*`objectExists()`*
+====objectExists()====
 
-*`putObject()`*
+====putObject()====
 
-*`sendRequest()`*
+====sendRequest()====
 
-*`signature()`*
+====signature()====
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
