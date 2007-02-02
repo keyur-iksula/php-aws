@@ -31,64 +31,76 @@ In order to handle large files efficiently (without loading them into memory), w
 
 Future versions will attempt to auto-detect curl's location if the one you specify is not valid (or executable).
 
-
-
 ====$_hasher====
+Instance of Crypt_HMAC() used to generate the sha1 request signature Amazon requires.
 
 ====$_date====
+Date of the current request.
 
 ====$_error====
+String containing an error message from Amazon if an error occurred.
 
 ==Methods==
 
-====__construct()====
+====__construct($key, $secret)====
+The S3 constructor initializes `$this->_hasher` using Amazon key and secret key you supply.
 
-====base64()====
+====base64($str)====
+Returns the base-64 encoded version of string `$str`.
 
-====bucketExists()====
+====bucketExists($bucket)====
+Returns true if `$bucket` is one of your available buckets. If false is returned, the bucket may potentially exist for another user.
 
-====createBucket()====
+====createBucket($bucket)====
+Attempts to create `$bucket` as a new bucket in your account. Returns true on success. If not successful, false is returned and $this->_error is set with the error message received from Amazon.
 
-====deleteBucket()====
+====deleteBucket($bucket)====
+Attempts to delete the bucket named `$bucket` from your account. Returns true on success. If not successful, false is returned and $this->_error is set with the error message received from Amazon.
 
-====deleteObject()====
+Note: non-empty buckets cannot be deleted. This is a restriction (a good one) of Amazon.
 
-====directorySize()====
+====deleteObject($bucket, $object)====
+Attempts to delete the object named `$object` in bucket `$bucket`. Returns true on success. False if the object could not be deleted.
 
-====downloadObject()====
+====directorySize($bucket, $prefix)====
+Returns the size, in bytes, of all the keys in bucket `$bucket` with prefix `$prefix`.
 
-====getBucketContents()====
+====downloadObject($bucket, $object, $saveTo)====
+Downloads the object named `$object` from bucket `$bucket` and saves on the filesystem as `$saveTo`.
+
+====getBucketContents($bucket, $prefix, $delim, $marker)====
+Returns an array containing the contents of bucket `$bucket`. Please see the [http://docs.amazonwebservices.com/AmazonS3/2006-03-01/ListingKeys.html Amazon reference] for an explanation of how `$prefix`, `$delim`, and `$marker` affect the results.
 
 ====getBuckets()====
+Returns an array containing the buckets accessible to your account.
 
-====getObject()====
+====getObject($bucket, $object)====
+Returns the contents of the object `$object` in bucket `$bucket`.
 
-====getObjectHead()====
+Note: since this loads the contents into memory, consider using `downloadObject()` for large files.
 
-====getObjectInfo()====
+====getObjectHead($bucket, $object)====
+Returns the HTTP header info for object `$object` in bucket `$bucket`.
 
-====isOk()====
+====getObjectInfo($bucket, $object)====
+Returns Amazon's meta information about object `$object` in bucket `$bucket`.
 
-====objectExists()====
+====isOk($result)====
+Searches the result of the current request for an error message. Returns `true` if none found. Otherwise, returns `false` and stores the error message in `$this->_error`.
 
-====putObject()====
+====objectExists($bucket, $object)====
+Returns true if object `$object` in bucket `$bucket` exists. False if it does not exist.
 
-====sendRequest()====
+====putObject($bucket, $object, $filename, $public, $disposition)====
+Stores the file `$filename` into bucket `$bucket` as object `$object`. If `$public` is true, the new object will be publicly accessible via the web at http://s3.amazonaws.com/$bucket/$object. If `$disposition` is set, the object will be stored with a special header to make the file download as an attachment named `$disposition`. This is useful if you want the file to have a different filename than its object name.
 
-====signature()====
+====sendRequest($req, $params)====
+Sends the request specified by the array `$req` along with any additional params listed in the array `$params`.
 
-====sortKeys()====
+Note: items in `$req` are sent as arguments to `curl`, while items in `$params` are sent in the query string.
 
+====signature($req)====
+Calculates a request signature using [http://docs.amazonwebservices.com/AmazonS3/2006-03-01/RESTAuthentication.html the algorithm specified by Amazon] and the items in `$req`.
 
-
-
-
-
-
-
-
-
-
-
-
-
+====sortKeys($keys, $first)====
+Sorts the keys listed in `$keys`. If `$first` is `null` it sorts the keys alphabetically. If `$first` is "key", keys are sorted alphabetically followed by prefixes. If `$first` is "prefix", prefixes are sorted first then the keys. This is useful if you want to list your getBucketContents() results in a filesytem format. You can have files and directories intermixed (OS X style) or directories listed first (Windows style).
