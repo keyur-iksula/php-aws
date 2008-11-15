@@ -1,5 +1,5 @@
 #summary Programmer's reference for class.s3.php (Simple Storage Service).
-#labels Phase-Implementation
+#labels Phase-Implementation,Deprecated
 =class.s3.php=
 
 class.s3.php allows you to interact with Amazon's Simple Storage Service (S3). You can add/remove buckets and keys and query information about them as well. [http://curl.haxx.se/ Curl] is used to enable working with large files.
